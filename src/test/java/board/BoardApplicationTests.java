@@ -17,7 +17,7 @@ class BoardApplicationTests {
 	}
 	
 	@Test
-	public void testSqlSession() throws Exception{
+	public void testSqlSession(){
 		System.out.println(sqlSession.toString());
 	}
 

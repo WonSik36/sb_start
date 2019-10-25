@@ -29,23 +29,36 @@ public class DatabaseConfiguration {
 	}
 	
 	@Bean
-	public DataSource dataSource() throws Exception{
+	public DataSource dataSource(){
 		DataSource dataSource = new HikariDataSource(hikariConfig());
 		System.out.println(dataSource.toString());
 		return dataSource;
 	}
 	
 	@Bean
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource)throws Exception {
-		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setDataSource(dataSource());
-		sqlSessionFactoryBean.setMapperLocations(
-				applicationContext.getResources("classpath:/mapper/**/sql-*.xml"));
-		return sqlSessionFactoryBean.getObject();
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource){
+		try {			
+			SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+			sqlSessionFactoryBean.setDataSource(dataSource());
+			sqlSessionFactoryBean.setMapperLocations(
+					applicationContext.getResources("classpath:/mapper/**/sql-*.xml"));
+			sqlSessionFactoryBean.setConfiguration(mybatisConfig());
+			return sqlSessionFactoryBean.getObject();
+		}catch(Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	@Bean
 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
+	
+	@Bean
+	@ConfigurationProperties(prefix="mybatis.configuration")
+	public org.apache.ibatis.session.Configuration mybatisConfig(){
+		return new org.apache.ibatis.session.Configuration();
+	}
+	
+	
 }

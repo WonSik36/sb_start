@@ -12,3 +12,6 @@ CREATE TABLE t_board(
 	deleted_yn CHAR(1) NOT NULL DEFAULT 'N' COMMENT '삭제여부',
 	PRIMARY KEY(board_idx)
 ); 
+
+INSERT INTO t_board(title,contents,creator_id,created_datetime)
+	VALUES('first title','first contents','admin',NOW());
