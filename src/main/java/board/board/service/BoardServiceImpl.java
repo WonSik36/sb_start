@@ -13,8 +13,17 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired private BoardMapper boardMapper;
 	
 	@Override
+	public void setBoardMapper(BoardMapper boardMapper) {
+		this.boardMapper = boardMapper;
+	}
+	
+	@Override
 	public List<BoardDto> selectBoardList() {
 		return boardMapper.selectBoardList();
 	}
 
+	@Override
+	public void insertBoard(BoardDto board) {
+		boardMapper.insertBoard(board);
+	}
 }

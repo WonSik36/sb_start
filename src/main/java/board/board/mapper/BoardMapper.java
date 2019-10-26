@@ -9,4 +9,5 @@ import board.board.dto.BoardDto;
 @Mapper
 public interface BoardMapper {
 	List<BoardDto> selectBoardList();
+	void insertBoard(BoardDto board);
 }

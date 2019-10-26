@@ -7,7 +7,7 @@ public class BoardDto {
 	private String title;
 	private String contents;
 	private int hitCnt;
-	private String CreatorId;
+	private String creatorId;
 	private String createdDatetime;
 	private String updatorId;
 	private String updatedDatetime;
