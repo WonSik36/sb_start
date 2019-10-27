@@ -9,6 +9,6 @@ public class BoardDto {
 	private int hitCnt;
 	private String creatorId;
 	private String createdDatetime;
-	private String updatorId;
+	private String updaterId;
 	private String updatedDatetime;
 }

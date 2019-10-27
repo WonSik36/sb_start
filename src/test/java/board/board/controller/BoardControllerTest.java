@@ -20,11 +20,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import board.board.dto.BoardDto;
+import board.board.mapper.BoardMapper;
 import board.board.service.BoardService;
 
+@Transactional
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
 public class BoardControllerTest {
@@ -82,11 +85,49 @@ public class BoardControllerTest {
 	public void openBoardDetailTest() {
 		try {
 			mockMvc.perform(get("/board/openBoardDetail.do")
-					.param("boardIdx", "3"))
+					.param("boardIdx", "1"))
 			.andExpect(status().isOk())
 			.andExpect(view().name("/board/boardDetail"))
 			.andExpect(model().size(1))
 			.andExpect(model().attributeExists("board"));			
+		}catch(Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void updateBoardTest() {
+		BoardDto testBoard = new BoardDto();
+		testBoard.setBoardIdx(99999);
+		testBoard.setTitle("Hello World");
+		testBoard.setContents("hi!");
+		
+		try {
+			mockMvc.perform(post("/board/updateBoard.do")
+					.param("boardIdx",Integer.toString(testBoard.getBoardIdx()))
+					.param("title",testBoard.getTitle())
+					.param("contents", testBoard.getContents()))
+			.andExpect(status().is3xxRedirection())
+			.andExpect(redirectedUrl("/board/openBoardList.do"));
+		}catch(Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@Test
+	public void deleteBoardTest() {
+		BoardDto testBoard = new BoardDto();
+		testBoard.setBoardIdx(99999);
+		testBoard.setTitle("Hello World");
+		testBoard.setContents("hi!");
+		
+		try {
+			mockMvc.perform(post("/board/deleteBoard.do")
+					.param("boardIdx",Integer.toString(testBoard.getBoardIdx()))
+					.param("title",testBoard.getTitle())
+					.param("contents", testBoard.getContents()))
+			.andExpect(status().is3xxRedirection())
+			.andExpect(redirectedUrl("/board/openBoardList.do"));
 		}catch(Exception e) {
 			throw new RuntimeException(e);
 		}

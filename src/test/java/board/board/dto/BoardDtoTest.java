@@ -17,7 +17,7 @@ public class BoardDtoTest {
 		board1.setHitCnt(3);
 		board1.setCreatorId("id1");
 		board1.setCreatedDatetime("123");
-		board1.setUpdatorId("456");
+		board1.setUpdaterId("456");
 		board1.setUpdatedDatetime("2789");
 		
 		board2 = new BoardDto();
@@ -27,7 +27,7 @@ public class BoardDtoTest {
 		board2.setHitCnt(4);
 		board2.setCreatorId("id2");
 		board2.setCreatedDatetime("1243");
-		board2.setUpdatorId("4586");
+		board2.setUpdaterId("4586");
 		board2.setUpdatedDatetime("7389");
 	}
 	
@@ -39,7 +39,7 @@ public class BoardDtoTest {
 		assertThat(board1.getHitCnt(), is(3));
 		assertThat(board1.getCreatorId(), is("id1"));
 		assertThat(board1.getCreatedDatetime(), is("123"));
-		assertThat(board1.getUpdatorId(), is("456"));
+		assertThat(board1.getUpdaterId(), is("456"));
 		assertThat(board1.getUpdatedDatetime(), is("2789"));
 	}
 	
@@ -51,7 +51,7 @@ public class BoardDtoTest {
 		board1.setHitCnt(4);
 		board1.setCreatorId("id2");
 		board1.setCreatedDatetime("1243");
-		board1.setUpdatorId("4586");
+		board1.setUpdaterId("4586");
 		board1.setUpdatedDatetime("7389");
 		
 		compareDto(board1, board2);
@@ -64,7 +64,7 @@ public class BoardDtoTest {
 		assertThat(b1.getHitCnt(), is(b2.getHitCnt()));
 		assertThat(b1.getCreatorId(), is(b2.getCreatorId()));
 		assertThat(b1.getCreatedDatetime(), is(b2.getCreatedDatetime()));
-		assertThat(b1.getUpdatorId(), is(b2.getUpdatorId()));
+		assertThat(b1.getUpdaterId(), is(b2.getUpdaterId()));
 		assertThat(b1.getUpdatedDatetime(), is(b2.getUpdatedDatetime()));
 	}
 }

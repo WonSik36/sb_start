@@ -12,4 +12,8 @@ public interface BoardMapper {
 	void insertBoard(BoardDto board);
 	void updateHitCount(int boardIdx);
 	BoardDto selectBoardDetail(int boardIdx);
+	void updateBoard(BoardDto board);
+	void deleteBoard(int boardIdx);
+	void deleteBoardAll();
+	int countBoard();
 }

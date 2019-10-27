@@ -65,4 +65,41 @@
 		]]>
 	</update>
 	
+	<update id="updateBoard" parameterType="board.board.dto.BoardDto">
+		<![CDATA[
+			UPDATE t_board SET 
+				title = #{title},
+				contents = #{contents},
+				updated_datetime = Now(),
+				updater_id = 'admin'
+			WHERE 
+				board_idx = #{boardIdx}
+		]]>
+	</update>
+	
+	<update id="deleteBoard" parameterType="int">
+		<![CDATA[
+			UPDATE t_board SET 
+				deleted_yn = 'Y',
+				updated_datetime = Now(),
+				updater_id = 'admin'
+			WHERE 
+				board_idx = #{boardIdx}
+		]]>
+	</update>
+	
+	<delete id="deleteBoardAll">
+		<![CDATA[
+			DELETE FROM t_board
+		]]>
+	</delete>
+	
+	<select id="countBoard" resultType="int">
+		<![CDATA[
+			SELECT
+				COUNT(*)
+			FROM
+				t_board
+		]]>
+	</select>
 </mapper>

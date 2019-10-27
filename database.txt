@@ -8,7 +8,7 @@ CREATE TABLE t_board(
 	created_datetime DATETIME NOT NULL COMMENT '작성시간',
 	creator_id VARCHAR(50) NOT NULL COMMENT '작성자',
 	updated_datetime DATETIME DEFAULT NULL COMMENT '수정시간',
-	updator_id VARCHAR(50) DEFAULT NULL COMMENT '수정자',
+	updater_id VARCHAR(50) DEFAULT NULL COMMENT '수정자',
 	deleted_yn CHAR(1) NOT NULL DEFAULT 'N' COMMENT '삭제여부',
 	PRIMARY KEY(board_idx)
 ); 
