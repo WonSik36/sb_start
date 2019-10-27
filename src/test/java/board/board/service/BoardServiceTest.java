@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.times;
@@ -115,6 +116,19 @@ class BoardServiceTest {
 		verify(mockMapper, times(5)).insertBoard(boardArg.capture());
 		List<BoardDto> insertedDtos = boardArg.getAllValues();
 		compareList(insertedDtos, list);
+	}
+	
+	@Test
+	public void selectBoardDetail(){
+		when(mockMapper.selectBoardDetail(anyInt()))
+			.thenReturn(list.get(0));
+		boardService.setBoardMapper(mockMapper);
+		for(int i=0;i<5;i++) {			
+			boardService.selectBoardDetail(i);
+		}
+		verify(mockMapper,times(5)).updateHitCount(anyInt());
+		BoardDto testBoard = boardService.selectBoardDetail(0);
+		compareDto(testBoard, list.get(0));
 	}
 	
 	private void compareList(List<BoardDto> list1, List<BoardDto> list2) {
