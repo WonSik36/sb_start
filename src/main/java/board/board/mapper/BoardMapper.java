@@ -10,4 +10,6 @@ import board.board.dto.BoardDto;
 public interface BoardMapper {
 	List<BoardDto> selectBoardList();
 	void insertBoard(BoardDto board);
+	void updateHitCount(int boardIdx);
+	BoardDto selectBoardDetail(int boardIdx);
 }

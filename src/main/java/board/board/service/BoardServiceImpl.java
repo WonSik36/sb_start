@@ -26,4 +26,11 @@ public class BoardServiceImpl implements BoardService {
 	public void insertBoard(BoardDto board) {
 		boardMapper.insertBoard(board);
 	}
+
+	@Override
+	public BoardDto selectBoardDetail(int boardIdx) {
+		boardMapper.updateHitCount(boardIdx);
+		
+		return boardMapper.selectBoardDetail(boardIdx);
+	}
 }

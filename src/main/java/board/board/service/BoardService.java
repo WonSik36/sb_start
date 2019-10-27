@@ -9,4 +9,5 @@ public interface BoardService {
 	void setBoardMapper(BoardMapper boardMapper);
 	List<BoardDto> selectBoardList();
 	void insertBoard(BoardDto board);
+	BoardDto selectBoardDetail(int boardIdx);
 }
