@@ -171,14 +171,6 @@ boardMapper.deleteBoardAll();
 			
 		assertThat(5, is(secondList.get(0).getHitCnt()));
 	}
-//	List<BoardDto> selectBoardList();
-//	void insertBoard(BoardDto board);
-//	void updateHitCount(int boardIdx);
-//	BoardDto selectBoardDetail(int boardIdx);
-//	void updateBoard(BoardDto board);
-//	void deleteBoard(int boardIdx);
-//	void deleteBoardAll();
-//	int countBoard();
 	
 	private void compareList(List<BoardDto> list1, List<BoardDto> list2) {
 		assertThat(list1.size(), is(list2.size()));
