@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
 public interface BoardService {
 	void setBoardMapper(BoardMapper boardMapper);
 	List<BoardDto> selectBoardList();

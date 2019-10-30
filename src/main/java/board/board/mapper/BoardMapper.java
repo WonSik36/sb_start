@@ -3,6 +3,7 @@ package board.board.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.transaction.annotation.Transactional;
 
 import board.board.dto.BoardDto;
 
