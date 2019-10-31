@@ -21,7 +21,7 @@ public class BoardController {
 	public ModelAndView openBoardList() {
 		//log.debug("openBoardList");
 		ModelAndView mv = new ModelAndView("/board/boardList");
-		
+
 		List<BoardDto> list = boardService.selectBoardList();
 		mv.addObject("list",list);
 		
