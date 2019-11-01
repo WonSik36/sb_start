@@ -38,6 +38,8 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.insertBoard(board);
 		// board.boardIdx is returned and saved by Mapper
 		List<BoardFileDto> list = fileUtils.parseFileInfoOrNull(board.getBoardIdx(), multipartHttpServletRequest);
+		if(list == null)
+			return;
 		if(CollectionUtils.isEmpty(list) == false) {
 			boardMapper.insertBoardFileList(list);
 		}
@@ -67,5 +69,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void deleteBoard(int boardIdx) {
 		boardMapper.deleteBoard(boardIdx);
+	}
+
+	@Override
+	public BoardFileDto selectBoardFileInformation(int idx, int boardIdx) {
+		return boardMapper.selectBoardFileInformation(idx, boardIdx);
 	}
 }

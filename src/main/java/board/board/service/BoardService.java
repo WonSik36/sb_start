@@ -1,6 +1,7 @@
 package board.board.service;
 
 import board.board.dto.BoardDto;
+import board.board.dto.BoardFileDto;
 import board.board.mapper.BoardMapper;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public interface BoardService {
 	BoardDto selectBoardDetail(int boardIdx);
 	void updateBoard(BoardDto board);
 	void deleteBoard(int boardIdx);
+	BoardFileDto selectBoardFileInformation(int idx, int boardIdx);
 }

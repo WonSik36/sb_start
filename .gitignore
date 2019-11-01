@@ -30,3 +30,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### static file ###
+*.jpg
+*.jpeg
+*.png
+*.gif
