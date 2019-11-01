@@ -7,16 +7,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import board.board.dto.BoardDto;
+import board.board.dto.BoardFileDto;
 import board.board.mapper.BoardMapper;
+import board.common.FileUtils;
 
 @Service
 public class BoardServiceImpl implements BoardService {
 	@Autowired private BoardMapper boardMapper;
+	@Autowired private FileUtils fileUtils;
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Override
@@ -31,23 +35,11 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void insertBoard(BoardDto board, MultipartHttpServletRequest multipartHttpServletRequest) {
-		//boardMapper.insertBoard(board);
-		if(ObjectUtils.isEmpty(multipartHttpServletRequest) == false) {
-			Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-			String name;
-			while(iterator.hasNext()) {
-				name = iterator.next();
-				log.debug("file tag name: "+name);
-				List<MultipartFile> list = multipartHttpServletRequest.getFiles(name);
-				for(MultipartFile multipartFile: list) {
-					log.debug("start file information");
-					log.debug("file name: "+multipartFile.getOriginalFilename());
-					log.debug("file size: "+multipartFile.getSize());
-					log.debug("file content type: "+multipartFile.getContentType());
-					log.debug("end file information\n");
-				}
-				
-			}
+		boardMapper.insertBoard(board);
+		// board.boardIdx is returned and saved by Mapper
+		List<BoardFileDto> list = fileUtils.parseFileInfoOrNull(board.getBoardIdx(), multipartHttpServletRequest);
+		if(CollectionUtils.isEmpty(list) == false) {
+			boardMapper.insertBoardFileList(list);
 		}
 	}
 	
@@ -58,9 +50,13 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardDto selectBoardDetail(int boardIdx) {
+		BoardDto board = boardMapper.selectBoardDetail(boardIdx);
+		List<BoardFileDto> fileList = boardMapper.selectBoardFileList(boardIdx);
+		board.setFileList(fileList);
+		
 		boardMapper.updateHitCount(boardIdx);
 
-		return boardMapper.selectBoardDetail(boardIdx);
+		return board;
 	}
 
 	@Override
