@@ -15,9 +15,17 @@
 	</appender>
 
 	<!-- 로거 -->
-	<logger name="board" level="DEBUG" appender-ref="console"/>
-	<logger name="jdbc.sqlonly" level="INFO" appender-ref="console-infolog"/>
-	<logger name="jdbc.resultsettable" level="INFO" appender-ref="console-infolog"/>
+	<!-- dev  -->
+	<springProfile name="dev">
+		<logger name="board" level="DEBUG" appender-ref="console"/>
+		<logger name="jdbc.sqlonly" level="INFO" appender-ref="console-infolog"/>
+		<logger name="jdbc.resultsettable" level="INFO" appender-ref="console-infolog"/>
+	</springProfile>
+	
+	<!-- production  -->
+	<springProfile name="production">
+		<logger name="board" level="ERROR" appender-ref="console"/>
+	</springProfile>
 	
 	<!-- 루트 로거 -->
     <root level="off">
