@@ -21,7 +21,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@PropertySource("classpath:/application.properties")
+@PropertySource("classpath:/bootstrap.yml")
 @EnableTransactionManagement
 public class DatabaseConfiguration {
 	@Autowired ApplicationContext applicationContext;

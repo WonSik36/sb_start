@@ -15,20 +15,11 @@
 	</appender>
 
 	<!-- 로거 -->
-	<!-- dev  -->
-	<springProfile name="dev">
-		<logger name="board" level="DEBUG" appender-ref="console"/>
-		<logger name="jdbc.sqlonly" level="INFO" appender-ref="console-infolog"/>
-		<logger name="jdbc.resultsettable" level="INFO" appender-ref="console-infolog"/>
-	</springProfile>
-	
 	<!-- production  -->
-	<springProfile name="production">
-		<logger name="board" level="ERROR" appender-ref="console"/>
-	</springProfile>
+	<logger name="board" level="ERROR" appender-ref="console"/>
 	
 	<!-- 루트 로거 -->
-    <root level="off">
+    <root level="error">
         <appender-ref ref="console"/>
     </root>
 </configuration>
