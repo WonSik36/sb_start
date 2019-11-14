@@ -1,6 +1,6 @@
 spring:
-  profiles: dev
+  profiles: prodcution
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://34.85.118.82:8888
       name: cloud-config
